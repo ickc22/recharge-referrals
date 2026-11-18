@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Provider Referral | Recharge Psychiatry</title>
+  <meta name="description" content="Refer a patient to Recharge Psychiatry. Telehealth psychiatric care for ages 6 and up across 15 states.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text: #1B3A4B;
+      --muted: #475569;
+      --accent: #0F766E;
+      --brand: #2E7D32;
+      --navy: #1B3A4B;
+      --teal: #0F766E;
+      --mist: #F0F7F4;
+      --seafoam: #E8F4F0;
+      --bg: #ffffff;
+      --line: #d6e4dc;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--mist);
+      line-height: 1.6;
+      font-size: 16px;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: var(--navy);
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    .header-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 6px;
+    }
+
+    .logo-row img {
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+    }
+
+    .logo-row h1 {
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .slogan {
+      color: #a7d7c5;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .main {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+    }
+
+    .card {
+      background: var(--bg);
+      border-radius: 16px;
+      padding: 32px 28px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 6px 16px rgba(0,0,0,0.04);
+    }
+
+    .card-title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .card-subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    label .required {
+      color: #dc2626;
+      margin-left: 2px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--text);
+      background: var(--bg);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.1);
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #94a3b8;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 500px) {
+      .row { grid-template-columns: 1fr; }
+    }
+
+    .section-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--seafoam);
+    }
+
+    .btn-submit {
+      display: block;
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 8px;
+    }
+
+    .btn-submit:hover { background: #256b29; }
+    .btn-submit:active { transform: scale(0.99); }
+    .btn-submit:disabled {
+      background: #94a3b8;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .hipaa-notice {
+      margin-top: 20px;
+      padding: 14px 16px;
+      background: var(--seafoam);
+      border-radius: 10px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .hipaa-notice svg {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 4px;
+      margin-top: -2px;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 24px 20px 40px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .footer a { color: var(--teal); text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    .footer-contact {
+      margin-top: 8px;
+    }
+
+    .success-message {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .success-message svg {
+      margin-bottom: 16px;
+    }
+
+    .success-message h2 {
+      font-family: 'Poppins', sans-serif;
+      color: var(--brand);
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .success-message p {
+      color: var(--muted);
+      font-size: 15px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .error-banner {
+      display: none;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2.5px solid rgba(255,255,255,0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .referring-section { margin-top: 28px; }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo-row">
+        <img src="https://rechargepsychiatry.com/recharge-logo.webp" alt="Recharge Psychiatry logo" width="48" height="48">
+        <h1>Recharge Psychiatry</h1>
+      </div>
+      <div class="slogan">Recharge Your Mind, Reclaim Your Life</div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="card">
+      <div id="formView">
+        <h2 class="card-title">Provider Referral Form</h2>
+        <p class="card-subtitle">
+          Refer a patient to Recharge Psychiatry for telehealth psychiatric care.
+          We serve ages 6 and up across 15 states.
+        </p>
+
+        <div id="errorBanner" class="error-banner"></div>
+
+        <form id="referralForm" novalidate>
+          <div class="section-label">Patient Information</div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="patientFirst">First Name <span class="required">*</span></label>
+              <input type="text" id="patientFirst" name="patientFirst" required placeholder="Patient first name" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label for="patientLast">Last Name <span class="required">*</span></label>
+              <input type="text" id="patientLast" name="patientLast" required placeholder="Patient last name" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="patientDob">Date of Birth <span class="required">*</span></label>
+              <input type="date" id="patientDob" name="patientDob" required>
+            </div>
+            <div class="form-group">
+              <label for="patientPhone">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="patientPhone" name="patientPhone" required placeholder="(555) 555-5555" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="patientEmail">Email Address <span class="required">*</span></label>
+            <input type="email" id="patientEmail" name="patientEmail" required placeholder="patient@email.com" autocomplete="off">
+          </div>
+
+          <div class="form-group">
+            <label for="patientState">Patient State <span class="required">*</span></label>
+            <select id="patientState" name="patientState" required>
+              <option value="">Select state...</option>
+              <option value="AZ">Arizona</option>
+              <option value="CO">Colorado</option>
+              <option value="CT">Connecticut</option>
+              <option value="IA">Iowa</option>
+              <option value="ID">Idaho</option>
+              <option value="IN">Indiana</option>
+              <option value="MD">Maryland</option>
+              <option value="ME">Maine</option>
+              <option value="NM">New Mexico</option>
+              <option value="NV">Nevada</option>
+              <option value="NY">New York</option>
+              <option value="OH">Ohio</option>
+              <option value="OR">Oregon</option>
+              <option value="UT">Utah</option>
+              <option value="WA">Washington</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="referralReason">Reason for Referral <span style="color:var(--muted);font-weight:400">(optional)</span></label>
+            <textarea id="referralReason" name="referralReason" placeholder="Please share any relevant details about why this patient is being referred for psychiatric care..."></textarea>
+          </div>
+
+          <div class="referring-section">
+            <div class="section-label">Referring Provider</div>
+
+            <div class="row">
+              <div class="form-group">
+                <label for="providerName">Your Name <span class="required">*</span></label>
+                <input type="text" id="providerName" name="providerName" required placeholder="Your full name">
+              </div>
+              <div class="form-group">
+                <label for="providerCredentials">Credentials</label>
+                <input type="text" id="providerCredentials" name="providerCredentials" placeholder="e.g. LCSW, LPC, PhD">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="providerPractice">Practice Name</label>
+              <input type="text" id="providerPractice" name="providerPractice" placeholder="Your practice or organization">
+            </div>
+
+            <div class="row">
+              <div class="form-group">
+                <label for="providerPhone">Phone</label>
+                <input type="tel" id="providerPhone" name="providerPhone" placeholder="(555) 555-5555">
+              </div>
+              <div class="form-group">
+                <label for="providerEmail">Email</label>
+                <input type="email" id="providerEmail" name="providerEmail" placeholder="provider@practice.com">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">Submit Referral</button>
+        </form>
+
+        <div class="hipaa-notice">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          This form is transmitted over a secure, encrypted connection and hosted on
+          HIPAA-compliant infrastructure covered by a Business Associate Agreement.
+          Submitted information is used solely to coordinate patient care.
+        </div>
+      </div>
+
+      <div id="successView" class="success-message">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="#2E7D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 12l3 3 5-5"/>
+        </svg>
+        <h2>Referral Submitted</h2>
+        <p>Thank you for your referral. Our team will reach out to the patient to schedule their appointment. If you have questions, feel free to contact us.</p>
+        <button onclick="resetForm()" style="margin-top:24px;padding:12px 28px;background:var(--teal);color:#fff;border:none;border-radius:10px;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;cursor:pointer;">Submit Another Referral</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div>Recharge Psychiatry &middot; Recharge Health LLC</div>
+    <div class="footer-contact">
+      <a href="tel:+14193187515">(419) 318-7515</a> &middot;
+      <a href="mailto:info@rechargepsychiatry.com">info@rechargepsychiatry.com</a>
+    </div>
+    <div style="margin-top:4px;">12575 Archbold-Whitehouse Rd, Whitehouse, OH 43571</div>
+    <div style="margin-top:8px;">
+      <a href="https://rechargepsychiatry.com" target="_blank" rel="noopener">rechargepsychiatry.com</a>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('referralForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const errorBanner = document.getElementById('errorBanner');
+
+    // Phone formatting
+    document.querySelectorAll('input[type="tel"]').forEach(input => {
+      input.addEventListener('input', function() {
+        let digits = this.value.replace(/\D/g, '');
+        if (digits.length > 10) digits = digits.slice(0, 10);
+        if (digits.length >= 6) {
+          this.value = `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
+        } else if (digits.length >= 3) {
+          this.value = `(${digits.slice(0,3)}) ${digits.slice(3)}`;
+        } else if (digits.length > 0) {
+          this.value = `(${digits}`;
+        }
+      });
+    });
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      errorBanner.style.display = 'none';
+
+      // Basic validation
+      const required = form.querySelectorAll('[required]');
+      for (const field of required) {
+        if (!field.value.trim()) {
+          field.focus();
+          showError('Please fill in all required fields.');
+          return;
+        }
+      }
+
+      const email = document.getElementById('patientEmail').value;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('patientEmail').focus();
+        showError('Please enter a valid email address for the patient.');
+        return;
+      }
+
+      const phone = document.getElementById('patientPhone').value.replace(/\D/g, '');
+      if (phone.length < 10) {
+        document.getElementById('patientPhone').focus();
+        showError('Please enter a valid 10-digit phone number.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
+
+      const data = {
+        patientFirst: form.patientFirst.value.trim(),
+        patientLast: form.patientLast.value.trim(),
+        patientDob: form.patientDob.value,
+        patientPhone: form.patientPhone.value.trim(),
+        patientEmail: form.patientEmail.value.trim(),
+        patientState: form.patientState.value,
+        referralReason: form.referralReason.value.trim(),
+        providerName: form.providerName.value.trim(),
+        providerCredentials: form.providerCredentials.value.trim(),
+        providerPractice: form.providerPractice.value.trim(),
+        providerPhone: form.providerPhone.value.trim(),
+        providerEmail: form.providerEmail.value.trim(),
+        submittedAt: new Date().toISOString()
+      };
+
+      try {
+        const res = await fetch('/api/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        if (!res.ok) {
+          const err = await res.json().catch(() => ({}));
+          throw new Error(err.message || 'Something went wrong. Please try again.');
+        }
+
+        document.getElementById('formView').style.display = 'none';
+        document.getElementById('successView').style.display = 'block';
+      } catch (err) {
+        showError(err.message);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Submit Referral';
+      }
+    });
+
+    function showError(msg) {
+      errorBanner.textContent = msg;
+      errorBanner.style.display = 'block';
+      errorBanner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function resetForm() {
+      form.reset();
+      document.getElementById('formView').style.display = 'block';
+      document.getElementById('successView').style.display = 'none';
+      errorBanner.style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
