@@ -7,11 +7,20 @@ module.exports = async function (context, req) {
   }
 
   const data = req.body;
-  if (!data || !data.patientFirst || !data.patientLast || !data.patientDob || !data.patientPhone || !data.patientEmail || !data.patientState || !data.providerName) {
+  if (!data || !data.patientFirst || !data.patientLast || !data.providerName) {
     context.res = {
       status: 400,
       headers: { "Content-Type": "application/json" },
       body: { message: "Please fill in all required fields." }
+    };
+    return;
+  }
+
+  if (!data.patientPhone && !data.patientEmail) {
+    context.res = {
+      status: 400,
+      headers: { "Content-Type": "application/json" },
+      body: { message: "Please provide at least a phone number or email address for the patient." }
     };
     return;
   }
@@ -25,20 +34,22 @@ module.exports = async function (context, req) {
     NY: "New York", OH: "Ohio", OR: "Oregon", UT: "Utah", WA: "Washington"
   };
 
+  const stateLine = data.patientState ? (stateNames[data.patientState] || data.patientState) : "Not provided";
+
   const emailHtml = `
     <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;">
-      <div style="background:#1B3A4B;padding:20px;text-align:center;border-radius:8px 8px 0 0;">
+      <div style="background:#2E7D32;padding:20px;text-align:center;border-radius:8px 8px 0 0;">
         <h2 style="color:#fff;margin:0;font-size:20px;">New Patient Referral</h2>
-        <p style="color:#a7d7c5;margin:4px 0 0;font-size:13px;">Recharge Psychiatry</p>
+        <p style="color:#d4edda;margin:4px 0 0;font-size:13px;">Recharge Psychiatry</p>
       </div>
       <div style="padding:24px;border:1px solid #e2e8f0;border-top:none;border-radius:0 0 8px 8px;">
         <h3 style="color:#0F766E;margin:0 0 12px;font-size:16px;border-bottom:2px solid #E8F4F0;padding-bottom:8px;">Patient Information</h3>
         <table style="width:100%;border-collapse:collapse;font-size:14px;">
           <tr><td style="padding:6px 0;color:#475569;width:140px;">Name</td><td style="padding:6px 0;font-weight:600;">${escHtml(data.patientFirst)} ${escHtml(data.patientLast)}</td></tr>
-          <tr><td style="padding:6px 0;color:#475569;">Date of Birth</td><td style="padding:6px 0;">${escHtml(data.patientDob)}</td></tr>
-          <tr><td style="padding:6px 0;color:#475569;">Phone</td><td style="padding:6px 0;">${escHtml(data.patientPhone)}</td></tr>
-          <tr><td style="padding:6px 0;color:#475569;">Email</td><td style="padding:6px 0;">${escHtml(data.patientEmail)}</td></tr>
-          <tr><td style="padding:6px 0;color:#475569;">State</td><td style="padding:6px 0;">${stateNames[data.patientState] || escHtml(data.patientState)}</td></tr>
+          ${data.patientDob ? `<tr><td style="padding:6px 0;color:#475569;">Date of Birth</td><td style="padding:6px 0;">${escHtml(data.patientDob)}</td></tr>` : ""}
+          ${data.patientPhone ? `<tr><td style="padding:6px 0;color:#475569;">Phone</td><td style="padding:6px 0;">${escHtml(data.patientPhone)}</td></tr>` : ""}
+          ${data.patientEmail ? `<tr><td style="padding:6px 0;color:#475569;">Email</td><td style="padding:6px 0;">${escHtml(data.patientEmail)}</td></tr>` : ""}
+          <tr><td style="padding:6px 0;color:#475569;">State</td><td style="padding:6px 0;">${escHtml(stateLine)}</td></tr>
         </table>
         ${data.referralReason ? `
         <h3 style="color:#0F766E;margin:20px 0 8px;font-size:16px;border-bottom:2px solid #E8F4F0;padding-bottom:8px;">Reason for Referral</h3>
@@ -46,16 +57,14 @@ module.exports = async function (context, req) {
         ` : ""}
         <h3 style="color:#0F766E;margin:20px 0 8px;font-size:16px;border-bottom:2px solid #E8F4F0;padding-bottom:8px;">Referring Provider</h3>
         <table style="width:100%;border-collapse:collapse;font-size:14px;">
-          <tr><td style="padding:6px 0;color:#475569;width:140px;">Name</td><td style="padding:6px 0;font-weight:600;">${escHtml(data.providerName)}${data.providerCredentials ? ", " + escHtml(data.providerCredentials) : ""}</td></tr>
-          ${data.providerPractice ? `<tr><td style="padding:6px 0;color:#475569;">Practice</td><td style="padding:6px 0;">${escHtml(data.providerPractice)}</td></tr>` : ""}
-          ${data.providerPhone ? `<tr><td style="padding:6px 0;color:#475569;">Phone</td><td style="padding:6px 0;">${escHtml(data.providerPhone)}</td></tr>` : ""}
-          ${data.providerEmail ? `<tr><td style="padding:6px 0;color:#475569;">Email</td><td style="padding:6px 0;">${escHtml(data.providerEmail)}</td></tr>` : ""}
+          <tr><td style="padding:6px 0;color:#475569;width:140px;">Name</td><td style="padding:6px 0;font-weight:600;">${escHtml(data.providerName)}</td></tr>
         </table>
         <p style="margin-top:20px;font-size:12px;color:#94a3b8;">Submitted ${new Date(data.submittedAt || Date.now()).toLocaleString("en-US", { timeZone: "America/New_York", dateStyle: "long", timeStyle: "short" })} ET</p>
       </div>
     </div>
   `;
 
+  const subjectState = data.patientState ? ` (${stateNames[data.patientState] || data.patientState})` : "";
   const recipients = [
     { address: "info@rechargepsychiatry.com" },
     { address: "Carlos@rechargepsychiatry.com" },
@@ -67,9 +76,9 @@ module.exports = async function (context, req) {
     const message = {
       senderAddress: senderAddress,
       content: {
-        subject: `New Referral: ${data.patientFirst} ${data.patientLast} (${stateNames[data.patientState] || data.patientState})`,
+        subject: `New Referral: ${data.patientFirst} ${data.patientLast}${subjectState}`,
         html: emailHtml,
-        plainText: `New Patient Referral\n\nPatient: ${data.patientFirst} ${data.patientLast}\nDOB: ${data.patientDob}\nPhone: ${data.patientPhone}\nEmail: ${data.patientEmail}\nState: ${stateNames[data.patientState] || data.patientState}\n${data.referralReason ? "Reason: " + data.referralReason + "\n" : ""}\nReferred by: ${data.providerName}${data.providerCredentials ? ", " + data.providerCredentials : ""}${data.providerPractice ? "\nPractice: " + data.providerPractice : ""}${data.providerPhone ? "\nPhone: " + data.providerPhone : ""}${data.providerEmail ? "\nEmail: " + data.providerEmail : ""}`
+        plainText: `New Patient Referral\n\nPatient: ${data.patientFirst} ${data.patientLast}${data.patientDob ? "\nDOB: " + data.patientDob : ""}${data.patientPhone ? "\nPhone: " + data.patientPhone : ""}${data.patientEmail ? "\nEmail: " + data.patientEmail : ""}\nState: ${stateLine}\n${data.referralReason ? "Reason: " + data.referralReason + "\n" : ""}\nReferred by: ${data.providerName}`
       },
       recipients: { to: recipients }
     };

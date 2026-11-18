@@ -35,44 +35,45 @@
     }
 
     .header {
-      background: var(--navy);
-      padding: 20px 0;
-      text-align: center;
+      background: rgba(255, 255, 255, 0.95);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
     }
 
     .header-inner {
       max-width: 600px;
       margin: 0 auto;
       padding: 0 20px;
-    }
-
-    .logo-row {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 14px;
-      margin-bottom: 6px;
+      gap: 12px;
     }
 
-    .logo-row img {
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
+    .header-inner img {
+      height: 40px;
+      width: auto;
     }
 
-    .logo-row h1 {
-      color: #fff;
+    .header-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-text h1 {
+      color: var(--navy);
       font-family: 'Poppins', sans-serif;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 700;
       letter-spacing: -0.01em;
+      line-height: 1.2;
     }
 
     .slogan {
-      color: #a7d7c5;
-      font-size: 14px;
+      color: var(--teal);
+      font-size: 13px;
       font-weight: 500;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.01em;
     }
 
     .main {
@@ -120,6 +121,11 @@
       margin-left: 2px;
     }
 
+    label .optional {
+      color: var(--muted);
+      font-weight: 400;
+    }
+
     input, textarea, select {
       width: 100%;
       padding: 12px 14px;
@@ -155,6 +161,7 @@
 
     @media (max-width: 500px) {
       .row { grid-template-columns: 1fr; }
+      .card { padding: 24px 20px; }
     }
 
     .section-label {
@@ -167,6 +174,12 @@
       margin-bottom: 16px;
       padding-bottom: 8px;
       border-bottom: 2px solid var(--seafoam);
+    }
+
+    .contact-hint {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 16px;
     }
 
     .btn-submit {
@@ -221,10 +234,6 @@
     .footer a { color: var(--teal); text-decoration: none; }
     .footer a:hover { text-decoration: underline; }
 
-    .footer-contact {
-      margin-top: 8px;
-    }
-
     .success-message {
       display: none;
       text-align: center;
@@ -239,14 +248,14 @@
       font-family: 'Poppins', sans-serif;
       color: var(--brand);
       font-size: 22px;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
     .success-message p {
       color: var(--muted);
       font-size: 15px;
       max-width: 400px;
-      margin: 0 auto;
+      margin: 0 auto 8px;
     }
 
     .error-banner {
@@ -281,11 +290,11 @@
 
   <header class="header">
     <div class="header-inner">
-      <div class="logo-row">
-        <img src="https://rechargepsychiatry.com/recharge-logo.webp" alt="Recharge Psychiatry logo" width="48" height="48">
+      <img src="https://rechargepsychiatry.com/recharge-logo.webp" alt="Recharge Psychiatry logo">
+      <div class="header-text">
         <h1>Recharge Psychiatry</h1>
+        <div class="slogan">Recharge Your Mind, Reclaim Your Life</div>
       </div>
-      <div class="slogan">Recharge Your Mind, Reclaim Your Life</div>
     </div>
   </header>
 
@@ -314,77 +323,58 @@
             </div>
           </div>
 
+          <p class="contact-hint">Please provide at least one way to reach the patient (phone or email).</p>
+
           <div class="row">
             <div class="form-group">
-              <label for="patientDob">Date of Birth <span class="required">*</span></label>
-              <input type="date" id="patientDob" name="patientDob" required>
+              <label for="patientPhone">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="patientPhone" name="patientPhone" placeholder="(555) 555-5555" autocomplete="off">
             </div>
             <div class="form-group">
-              <label for="patientPhone">Phone Number <span class="required">*</span></label>
-              <input type="tel" id="patientPhone" name="patientPhone" required placeholder="(555) 555-5555" autocomplete="off">
+              <label for="patientEmail">Email Address <span class="required">*</span></label>
+              <input type="email" id="patientEmail" name="patientEmail" placeholder="patient@email.com" autocomplete="off">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="form-group">
+              <label for="patientDob">Date of Birth <span class="optional">(optional)</span></label>
+              <input type="date" id="patientDob" name="patientDob">
+            </div>
+            <div class="form-group">
+              <label for="patientState">Patient State <span class="optional">(optional)</span></label>
+              <select id="patientState" name="patientState">
+                <option value="">Select state...</option>
+                <option value="AZ">Arizona</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="IA">Iowa</option>
+                <option value="ID">Idaho</option>
+                <option value="IN">Indiana</option>
+                <option value="MD">Maryland</option>
+                <option value="ME">Maine</option>
+                <option value="NM">New Mexico</option>
+                <option value="NV">Nevada</option>
+                <option value="NY">New York</option>
+                <option value="OH">Ohio</option>
+                <option value="OR">Oregon</option>
+                <option value="UT">Utah</option>
+                <option value="WA">Washington</option>
+              </select>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="patientEmail">Email Address <span class="required">*</span></label>
-            <input type="email" id="patientEmail" name="patientEmail" required placeholder="patient@email.com" autocomplete="off">
-          </div>
-
-          <div class="form-group">
-            <label for="patientState">Patient State <span class="required">*</span></label>
-            <select id="patientState" name="patientState" required>
-              <option value="">Select state...</option>
-              <option value="AZ">Arizona</option>
-              <option value="CO">Colorado</option>
-              <option value="CT">Connecticut</option>
-              <option value="IA">Iowa</option>
-              <option value="ID">Idaho</option>
-              <option value="IN">Indiana</option>
-              <option value="MD">Maryland</option>
-              <option value="ME">Maine</option>
-              <option value="NM">New Mexico</option>
-              <option value="NV">Nevada</option>
-              <option value="NY">New York</option>
-              <option value="OH">Ohio</option>
-              <option value="OR">Oregon</option>
-              <option value="UT">Utah</option>
-              <option value="WA">Washington</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="referralReason">Reason for Referral <span style="color:var(--muted);font-weight:400">(optional)</span></label>
-            <textarea id="referralReason" name="referralReason" placeholder="Please share any relevant details about why this patient is being referred for psychiatric care..."></textarea>
+            <label for="referralReason">Reason for Referral <span class="optional">(optional)</span></label>
+            <textarea id="referralReason" name="referralReason" placeholder="Any relevant details about why this patient is being referred..."></textarea>
           </div>
 
           <div class="referring-section">
             <div class="section-label">Referring Provider</div>
 
-            <div class="row">
-              <div class="form-group">
-                <label for="providerName">Your Name <span class="required">*</span></label>
-                <input type="text" id="providerName" name="providerName" required placeholder="Your full name">
-              </div>
-              <div class="form-group">
-                <label for="providerCredentials">Credentials</label>
-                <input type="text" id="providerCredentials" name="providerCredentials" placeholder="e.g. LCSW, LPC, PhD">
-              </div>
-            </div>
-
             <div class="form-group">
-              <label for="providerPractice">Practice Name</label>
-              <input type="text" id="providerPractice" name="providerPractice" placeholder="Your practice or organization">
-            </div>
-
-            <div class="row">
-              <div class="form-group">
-                <label for="providerPhone">Phone</label>
-                <input type="tel" id="providerPhone" name="providerPhone" placeholder="(555) 555-5555">
-              </div>
-              <div class="form-group">
-                <label for="providerEmail">Email</label>
-                <input type="email" id="providerEmail" name="providerEmail" placeholder="provider@practice.com">
-              </div>
+              <label for="providerName">Your Name <span class="required">*</span></label>
+              <input type="text" id="providerName" name="providerName" required placeholder="Your full name and credentials">
             </div>
           </div>
 
@@ -404,8 +394,9 @@
           <circle cx="12" cy="12" r="10"/>
           <path d="M8 12l3 3 5-5"/>
         </svg>
-        <h2>Referral Submitted</h2>
-        <p>Thank you for your referral. Our team will reach out to the patient to schedule their appointment. If you have questions, feel free to contact us.</p>
+        <h2>Thank You!</h2>
+        <p>Your submission has been received.</p>
+        <p>Thank you for choosing Recharge Psychiatry. Our team will reach out to the patient to schedule their appointment.</p>
         <button onclick="resetForm()" style="margin-top:24px;padding:12px 28px;background:var(--teal);color:#fff;border:none;border-radius:10px;font-family:'Poppins',sans-serif;font-weight:600;font-size:15px;cursor:pointer;">Submit Another Referral</button>
       </div>
     </div>
@@ -413,7 +404,7 @@
 
   <footer class="footer">
     <div>Recharge Psychiatry &middot; Recharge Health LLC</div>
-    <div class="footer-contact">
+    <div style="margin-top:4px;">
       <a href="tel:+14193187515">(419) 318-7515</a> &middot;
       <a href="mailto:info@rechargepsychiatry.com">info@rechargepsychiatry.com</a>
     </div>
@@ -428,7 +419,6 @@
     const submitBtn = document.getElementById('submitBtn');
     const errorBanner = document.getElementById('errorBanner');
 
-    // Phone formatting
     document.querySelectorAll('input[type="tel"]').forEach(input => {
       input.addEventListener('input', function() {
         let digits = this.value.replace(/\D/g, '');
@@ -447,27 +437,40 @@
       e.preventDefault();
       errorBanner.style.display = 'none';
 
-      // Basic validation
-      const required = form.querySelectorAll('[required]');
-      for (const field of required) {
-        if (!field.value.trim()) {
-          field.focus();
-          showError('Please fill in all required fields.');
+      const first = form.patientFirst.value.trim();
+      const last = form.patientLast.value.trim();
+      const phone = form.patientPhone.value.trim();
+      const email = form.patientEmail.value.trim();
+      const provider = form.providerName.value.trim();
+
+      if (!first || !last) {
+        showError('Please enter the patient\'s first and last name.');
+        return;
+      }
+
+      if (!phone && !email) {
+        showError('Please provide at least a phone number or email address for the patient.');
+        return;
+      }
+
+      if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('patientEmail').focus();
+        showError('Please enter a valid email address.');
+        return;
+      }
+
+      if (phone) {
+        const digits = phone.replace(/\D/g, '');
+        if (digits.length < 10) {
+          document.getElementById('patientPhone').focus();
+          showError('Please enter a valid 10-digit phone number.');
           return;
         }
       }
 
-      const email = document.getElementById('patientEmail').value;
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        document.getElementById('patientEmail').focus();
-        showError('Please enter a valid email address for the patient.');
-        return;
-      }
-
-      const phone = document.getElementById('patientPhone').value.replace(/\D/g, '');
-      if (phone.length < 10) {
-        document.getElementById('patientPhone').focus();
-        showError('Please enter a valid 10-digit phone number.');
+      if (!provider) {
+        document.getElementById('providerName').focus();
+        showError('Please enter your name.');
         return;
       }
 
@@ -475,18 +478,14 @@
       submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
 
       const data = {
-        patientFirst: form.patientFirst.value.trim(),
-        patientLast: form.patientLast.value.trim(),
-        patientDob: form.patientDob.value,
-        patientPhone: form.patientPhone.value.trim(),
-        patientEmail: form.patientEmail.value.trim(),
-        patientState: form.patientState.value,
+        patientFirst: first,
+        patientLast: last,
+        patientDob: form.patientDob.value || '',
+        patientPhone: phone,
+        patientEmail: email,
+        patientState: form.patientState.value || '',
         referralReason: form.referralReason.value.trim(),
-        providerName: form.providerName.value.trim(),
-        providerCredentials: form.providerCredentials.value.trim(),
-        providerPractice: form.providerPractice.value.trim(),
-        providerPhone: form.providerPhone.value.trim(),
-        providerEmail: form.providerEmail.value.trim(),
+        providerName: provider,
         submittedAt: new Date().toISOString()
       };
 
