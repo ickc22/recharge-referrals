@@ -37,7 +37,7 @@
     .header {
       background: rgba(255, 255, 255, 0.95);
       border-bottom: 1px solid var(--line);
-      padding: 14px 0;
+      padding: 16px 0;
     }
 
     .header-inner {
@@ -45,28 +45,14 @@
       margin: 0 auto;
       padding: 0 20px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
+      gap: 6px;
     }
 
     .header-inner img {
-      height: 40px;
+      height: 48px;
       width: auto;
-    }
-
-    .header-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .header-text h1 {
-      color: var(--navy);
-      font-family: 'Poppins', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      line-height: 1.2;
     }
 
     .slogan {
@@ -74,6 +60,7 @@
       font-size: 13px;
       font-weight: 500;
       letter-spacing: 0.01em;
+      text-align: center;
     }
 
     .main {
@@ -159,9 +146,13 @@
       gap: 16px;
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       .row { grid-template-columns: 1fr; }
-      .card { padding: 24px 20px; }
+      .card { padding: 24px 16px; border-radius: 12px; }
+      .main { padding: 20px 12px 48px; }
+      input, textarea, select { font-size: 16px; padding: 14px; }
+      .btn-submit { padding: 16px 24px; font-size: 17px; }
+      .card-title { font-size: 20px; }
     }
 
     .section-label {
@@ -290,11 +281,8 @@
 
   <header class="header">
     <div class="header-inner">
-      <img src="https://rechargepsychiatry.com/recharge-logo.webp" alt="Recharge Psychiatry logo">
-      <div class="header-text">
-        <h1>Recharge Psychiatry</h1>
-        <div class="slogan">Recharge Your Mind, Reclaim Your Life</div>
-      </div>
+      <img src="https://rechargepsychiatry.com/recharge-logo.webp" alt="Recharge Psychiatry">
+      <div class="slogan">Recharge Your Mind, Reclaim Your Life</div>
     </div>
   </header>
 
